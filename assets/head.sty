@@ -1,0 +1,89 @@
+% pandoc --template=head.sty moldoc.md -o moldoc.pdf -f markdown+lhs --listings
+\documentclass[a4paper,10pt,onepage]{article}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{marvosym}
+
+
+%Seitenlayout%
+\usepackage{vmargin}
+\setmarginsrb{2.0cm}{2.0cm}{2.0cm}{2.0cm}{0.6cm}{0.6cm}{0.6cm}{0.5cm}
+
+\usepackage{fancyvrb}
+
+%Schriftart%
+\usepackage{mathptmx,charter,courier}
+\usepackage[scaled]{helvet}
+
+%Header %
+\usepackage{fancyhdr}
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{MolComponents} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[C]{} %Seitennummer
+\fancyfoot[R]{\thepage} %Seitennummer
+
+% code listings
+\usepackage{xcolor}
+\definecolor{darkgreen}{rgb}{0,0.7,0} 
+\definecolor{darkred}{rgb}{0.7,0,0} 
+\definecolor{darkblue}{rgb}{0,0,0.7} 
+\definecolor{lightgrey}{rgb}{0.97,0.97,0.97} 
+
+\usepackage{framed}
+\usepackage{fancyvrb}
+
+\usepackage{listingsutf8}
+\lstset{
+    language=PHP,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    basicstyle=\small\ttfamily,
+    inputencoding=utf8/latin1,
+    keywordstyle=\color{darkblue}, 
+    commentstyle=\color{darkgreen}, 
+    stringstyle=\color{darkred}, 
+    numbers=left, 
+    tabsize=4, 
+    breaklines=true, 
+    breakatwhitespace= true, 
+    frame=tlrb,
+    backgroundcolor=\color{lightgrey}
+}
+
+% prevents error "textcurrency not available"
+\lstset{literate=%
+{Ö}{{\"O}}1
+{Ä}{{\"A}}1
+{Ü}{{\"U}}1
+{ß}{{\ss}}2
+{ü}{{\"u}}1
+{ä}{{\"a}}1
+{ö}{{\"o}}1
+}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\begin{document}
+
+
+\title{MolComponents}
+\author{Matthimatiker}
+\date{December 2012}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+
+$body$
+
+\end{document}

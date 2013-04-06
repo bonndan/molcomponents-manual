@@ -1,0 +1,31 @@
+{
+    "name": "bonndan/molcomponents-usermanual",
+    "description": "User Manual Generator",
+    "keywords": ["documentation", "phpdoc"],
+    "license": "MIT",
+    
+    "require": {
+        "php": ">=5.3.3",
+        "matthimatiker/MolComponents": "*",
+        "bonndan/MdMan": "*"
+    },
+            
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "bonndan/MdMan",
+                "version": "0.1",
+                "dist": {
+                    "url": "https://github.com/bonndan/mdman/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "/home/daniel/workspace/phpdoc2-plugin-markdownmanual",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
+}
