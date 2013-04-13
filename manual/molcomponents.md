@@ -4,8 +4,9 @@
 
 
 ## Mol_Mail_Factory ##
-Factory that uses template configurations to create pre-filled mail objects.
-# Configuration #
+
+
+### Configuration ###
 
 The factory expects a list of template configurations as first constructor
 parameter:
@@ -57,15 +58,13 @@ Template settings example:
         )
     );
 
+
 ## Mol_Application_Resource_Mailer ##
-Initializes a mail factory that is used to create mails by templates.
-This resource depends on the following resources:
 
-* view - Used for rendering mail templates.
 
-# Usage #
+### Usage ###
 
-## Simple mail creation ##
+#### Simple mail creation ####
 
 To create a mail factory without templates it is enough
 to just activate the resource:
@@ -81,7 +80,7 @@ of an action controller:
     $mail = $this->getInvokeArg('bootstrap')->getResource('mailer')->create();
 
 
-## Configuration and usage of templates ##
+#### Configuration and usage of templates ####
 
 Advanced features can be used by configuring mail template configuration
 files and paths to view scripts:
@@ -108,16 +107,14 @@ a pre-configured mail object:
 The create() method receives a template name and (optionally) a list
 of parameters that is passed to the configured content view scripts.
 
+
 # Mol_Controller #
 
 
 ## Mol_Controller_ActionParameter ##
-Basic class for controllers that allows to define request parameters
-directly as action method arguments.
-The controller takes care of
-parameter validation and casts them to the expected type.
 
-# Usage #
+
+### Usage ###
 
 To use the controllers functionality add the required request parameters
 as method arguments to the action:
@@ -155,7 +152,7 @@ Currently the controller supports the following default types:
 * mixed (avoids the arguments validation)
 
 
-# Extension #
+### Extension ###
 
 If needed arbitrary types may be added to the controller.
 Therefore a validator of the type Zend_Validate_Interface must be registered
@@ -183,39 +180,58 @@ The registration of validators and filters may either take place inside
 the controller class (for example in its init() or preDispatch() method)
 or from the outside (for example by an action helper).
 
+
 ## Mol_Controller_Exception_ParameterMissing ##
+
+
 Exception that is used if a required parameter is not available.
 
 
+
 ## Mol_Controller_Exception_ActionParameter ##
+
+
 Basic class for all exceptions that are raised by the ActionParameter controller.
 
 
+
 ## Mol_Controller_Exception_ParameterTagMissing ##
+
+
 Exception that is used if an action methods DocBlock is defined, but does
 not contain enough information for a declared parameter.
 
 
+
 ## Mol_Controller_Exception_ParameterNotValid ##
+
+
 Exception that is used if provided parameter is not of the expected type.
 
 
+
 ## Mol_Controller_Exception_DocBlockMissing ##
+
+
 Exception that is used of an action is not documented.
+
 
 
 # Mol_Bootstrap #
 
 
 ## Mol_Application_Bootstrap_LazyLoad_ResourceDecorator ##
+
+
 An application resource decorator that delays initialization by using
 a LazyLoader instance.
 
 
+
 ## Mol_Application_Bootstrap_Injector ##
-Helper class that is able to inject a bootstrapper into
-bootstrap aware objects.
-# Usage #
+
+
+### Usage ###
 
 Create an injector:
 
@@ -234,15 +250,20 @@ The injector will also ignore non-objects:
 
 The method inject() returns the provided value afterwards.
 
+
 ## Mol_Application_Bootstrap_LazyLoader ##
+
+
 Class that uses a callback to lazy load resources.
 
 
-## Mol_Application_Bootstrap ##
-Bootstrapper that adds support for lazy loading.
-# Usage #
 
-## Bootstrapper configuration ##
+## Mol_Application_Bootstrap ##
+
+
+### Usage ###
+
+#### Bootstrapper configuration ####
 
 Use this bootstrapper as base class for your own bootstrap class:
 
@@ -257,7 +278,7 @@ ensure that the bootstrapper is used:
     bootstrap.class = "My_Bootstrap"
 
 
-## Lazy loading configuration ##
+#### Lazy loading configuration ####
 
 Now it is possible to activate lazy loading for any configured
 resource by setting the lazyLoad option:
@@ -278,23 +299,22 @@ Keep in mind that some resources must be executed early, as they modify
 the global state of the application and will not be retrieved explicitly
 via getResource().
 
+
 # Mol_Form #
 
 
 ## Mol_Application_Resource_Form ##
-Initializes the form factory.
-This resource allows the configuration of aliases and
-factory plugins.
 
-# Usage #
 
-## Activation ##
+### Usage ###
+
+#### Activation ####
 
 The following line is enough to activate the form factory:
 
     resources.form = On
 
-## Adding aliases ##
+#### Adding aliases ####
 
 Additionally aliases can be configured:
 
@@ -304,7 +324,7 @@ Additionally aliases can be configured:
 The alias must be used as key, the form class that it
 points to as value.
 
-## Configuring plugins ##
+#### Configuring plugins ####
 
 To enhance form that are created by the factory, plugins can
 be used.
@@ -330,31 +350,38 @@ the "class" key. The "options" key must be any map or
 array of plugin options. These options will be directly
 passed to the plugin constructor.
 
-## Bootstrapper injection into plugins ##
+#### Bootstrapper injection into plugins ####
 
 If the plugin class implements Mol_Application_Bootstrap_Aware,
 then the resource will inject the bootstrapper into the created
 plugin.
 
-## Mol_Form_Factory_Plugin_AutoCompleteOff ##
-Plugin that disables browser auto completion for all forms.
-# Usage #
 
-## Configuration ##
+## Mol_Form_Factory_Plugin_AutoCompleteOff ##
+
+
+### Usage ###
+
+#### Configuration ####
 
 Activate Autocomplete plugin:
 
     resources.form.plugins.autoComplete = "Mol_Form_Factory_Plugin_AutoCompleteOff"
 
+
 ## Mol_Form_Factory_Plugin_Null ##
+
+
 Form plugin that does nothing.
 Can be used to disable plugins via configuration or for testing.
 
-## Mol_Form_Factory_Plugin_Csrf ##
-Plugin that adds CSRF tokens to forms.
-# Usage #
 
-## Configuration ##
+## Mol_Form_Factory_Plugin_Csrf ##
+
+
+### Usage ###
+
+#### Configuration ####
 
 Activate CSRF plugin without further configuration:
 
@@ -367,13 +394,18 @@ Configure added element in detail:
     resources.form.plugins.csrf.options.element.salt    = "secret-salt"
     resources.form.plugins.csrf.options.element.timeout = 1800
 
+
 ## Mol_Form_Factory_Plugin_AbstractPlugin ##
+
+
 Optional base class for form factory plugins.
 
 
+
 ## Mol_Form_Element_EmailAddress ##
-Pre-configured form element that accepts email addresses.
-# Usage #
+
+
+### Usage ###
 
 The element can simply be added to any Zend_Form, no further configuration
 is required:
@@ -407,18 +439,20 @@ hostname is available):
 
 That information may be used for client-side validation via JavaScript.
 
-## Mol_Form_Factory ##
-Factory that creates form instances.
-# Usage #
 
-## Creation ##
+## Mol_Form_Factory ##
+
+
+### Usage ###
+
+#### Creation ####
 
 The form factory does not require any constructor arguments.
 Therefore, the following line is enough to create a new factory:
 
     $factory = new Mol_Form_Factory();
 
-## Creating forms ##
+#### Creating forms ####
 
 Without further configuration the factory is able to create forms
 by class name:
@@ -429,7 +463,7 @@ by class name:
 Each call to create() instantiates a new form, created instances
 are not cached.
 
-## Aliases ##
+#### Aliases ####
 
 The method addAlias() can be used to register a form alias.
 
@@ -450,7 +484,7 @@ configuration:
     // Creates an instance of Another_Login_Form.
     $form = $factory->create('My_Login_Form');
 
-## Plugins ##
+#### Plugins ####
 
 Plugins are used to improve just created forms.
 
@@ -474,10 +508,13 @@ create():
     $form = new Zend_Form();
     $form = $factory->create($form);
 
+
 # Mol_Test #
 
 
 ## Mol_Test_Assertions_HttpResponse ##
+
+
 Encapsulates assertions regarding the response object.
 Test cases may return an instance of Mol_Test_Assertions_HttpResponse to
 support speaking method calls:
@@ -485,27 +522,42 @@ support speaking method calls:
     // assertResponse() returns an instance of Mol_Test_Assertions_Response
     $this->assertResponse()->contains('Hello!');
 
+
 ## Mol_Test_Controller_Action_Helper_ViewRenderer ##
+
+
 A ViewRenderer that avoids global dependencies and is used for testing.
 
 
+
 ## Mol_Test_Controller_Action_Helper_Redirector ##
+
+
 Redirector helper that is used for testing.
 Avoids connections to global dependencies and prevents calls to exit(),
 which would lead to untestable code.
 
+
 ## Mol_Test_Bootstrap_Mock ##
+
+
 Class that may be used to mock bootstrappers.
 It does not implement the extensive bootstrapper interfaces, but it supports
 the most important methods that are used by controllers to load resources
 and options.
 
+
 ## Mol_Test_Exception ##
+
+
 Exception that is used by the testing helper classes, for example to
 indicate restrictions.
 
 
+
 ## Mol_Test_Http_Client_Adapter ##
+
+
 This class is an improved test adapter for Zend_Http_Client objects.
 In addition to iterate over a set of responses it is also possible
 to register responses that are only delivered if the requested url
@@ -551,11 +603,13 @@ that was registered first will be returned:
 Requesting "http://www.matthimatiker.de/demo.html" will return $myResponse
 in this case.
 
-## Mol_Test_WebControllerTestCase ##
-Base class for web controller tests.
-# Requirements #
 
-## Naming and path conventions ##
+## Mol_Test_WebControllerTestCase ##
+
+
+### Requirements ###
+
+#### Naming and path conventions ####
 
 The WebControllerTestCase detects and loads the tested class automatically.
 Therefore it is important to name and place the TestCase correctly.
@@ -570,7 +624,7 @@ controller file:
 Controller file: /application/controllers/IndexController.php
 Test file: /tests/application/controllers/IndexControllerTest.php
 
-## Customize controller loading behavior ##
+#### Customize controller loading behavior ####
 
 If the name of the test case and the name of the controller class
 do not fit together, then ``getControllerClass()`` must be overwritten
@@ -596,11 +650,11 @@ return the path to the controller file:
 The file must contain the controller class that is provided by
 getControllerClass(), otherwise an exception will be thrown.
 
-# Usage #
+### Usage ###
 
-## Prepare the environment ##
+#### Prepare the environment ####
 
-### Simulate configuration options ###
+##### Simulate configuration options #####
 
 The prepared bootstrapper is used to simulate configuration options.
 The following configuration...
@@ -613,7 +667,7 @@ The following configuration...
     demo.name = "Dori"
     demo.mail = "dori@demo.com"
 
-### Simulate resources ###
+##### Simulate resources #####
 
 Resources (for example database connections) may also be simulated
 via bootstrapper:
@@ -627,7 +681,7 @@ manual setup work:
 * Layout
 * View
 
-### Simulate parameters ###
+##### Simulate parameters #####
 
 The request parameters are simulated via setGet() and setPost():
 
@@ -650,7 +704,7 @@ User parameters may be simulated via setUserParams():
 
 Usually user parameters are passed via forwarding.
 
-### Simulate identity ###
+##### Simulate identity #####
 
 The controller can use Zend_Auth to determine the currently
 logged in user.
@@ -669,7 +723,7 @@ Use getIdentity() as a shortcut to retrieve the current identity:
 
     $currentIdentity = $this->getIdentity();
 
-### Simulate invoke args ###
+##### Simulate invoke args #####
 
 The controller is created in the set up phase, therefore changing the
 invoke args afterwards is not possible.
@@ -691,9 +745,9 @@ to re-create the controller within a test method:
 
 Afterwards the new controller can be tested as usual.
 
-## Testing ##
+#### Testing ####
 
-### Single controller methods ###
+##### Single controller methods #####
 
 Single controller methods can be executed directly:
 
@@ -704,7 +758,7 @@ can be checked to verify the controller behavior:
 
     $this->assertResponse()->hasHeader('Expires');
 
-### Action tests including lifecycle ###
+##### Action tests including lifecycle #####
 
 More complex tests might rely on the controller lifecycle.
 The ``dispatch()`` method helps to to simulate the controller
@@ -730,14 +784,19 @@ should be called only once per test.
 After executing an action the provided assertions are used to
 check the results just like in a single method test.
 
+
 ## Mol_Test_View_Helper_Url ##
+
+
 View helper that is used to simulate the original view helper from Zend.
 Avoids dependencies to the front controller und caches call parameters
 for later analysis.
 
+
 ## Mol_Test_Bootstrap ##
-A bootstrapper that supports simulation of resources and is used for testing.
-# Usage #
+
+
+### Usage ###
 
 The static create() method may be used to instantiate a new bootstrapper:
 
@@ -755,10 +814,13 @@ to retrieve the simulated values:
 
     $view = $bootstrapper->getResource('view');
 
+
 # Mol_Filter #
 
 
 ## Mol_Filter_Cast ##
+
+
 Filter that casts values to the type that was specified in the constructor.
 Example:
 
@@ -766,7 +828,10 @@ Example:
     // Returns the integer 42.
     $filter->filter('42');
 
+
 ## Mol_Filter_Null ##
+
+
 Null object for filters.
 Returns the argument value without doing anything.
 
@@ -778,10 +843,13 @@ Example:
     // Returns the string "Hello!".
     $filter->filter('Hello!');
 
+
 # Mol_View #
 
 
 ## Mol_View_Helper_Favicon ##
+
+
 Helper that generates a link tag that defines the favicon to use.
 The following examples demonstrate the usage of this helper in views.
 
@@ -809,7 +877,10 @@ If no icon url is provided the helper will not  generate any markup:
     <!-- Generates an empty string. -->
     <?= $this->favicon(); ?>
 
+
 ## Mol_View_Helper_To ##
+
+
 View helper that simplifies generating urls within the application.
 Create a url with the parameter "confirm" within a view:
 
@@ -835,48 +906,77 @@ Append all parameters of the current request:
 
     <?= $this->to('my-action', 'my-controller')->keepParams(); ?>
 
+
 ## Mol_View_Helper_Value_Url ##
+
+
 Contains url data and generates the url if it is casted to a string.
+
 
 
 # Mol_Validate #
 
 
 ## Mol_Validate_Form_Relation_NotContains ##
+
+
 Validator which ensures that a value does not contain another value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_Equal ##
+
+
 Validator that checks if two values are equal.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_GreaterThanOrEqual ##
+
+
 Validator that checks if a value is greater than or equal to a compared value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_LessThanOrEqual ##
+
+
 Validator that checks if a value is less than or equal to a compared value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_Contains ##
+
+
 Validator which ensures that a value contains another value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_GreaterThan ##
+
+
 Validator that checks if a value is greater than a compared value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_NotEqual ##
+
+
 Validator that checks if two values are *not* equal.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_Relation_LessThan ##
+
+
 Validator that checks if a value is less than a compared value.
 Can be used in combination with Mol_Validate_Form_ElementRelation.
 
+
 ## Mol_Validate_Form_ElementRelation ##
-Validator that compares the values of two different form elements.
-# Usage #
+
+
+### Usage ###
 
 The validator is simply added to a form element.
 The relation and the compared element are passed to the
@@ -912,7 +1012,7 @@ More specific or custom relations can be provided as object instead
 of the relation identifier.
 
 
-# Custom relations #
+### Custom relations ###
 
 The relation validators that are used internally must implement
 the Zend_Validate_Interface interface.
@@ -934,7 +1034,7 @@ Adding it could look like this:
     $validator = new Mol_Validate_Form_ElementRelation($relation, $comparedElement);
 
 
-# Error messages #
+### Error messages ###
 
 The ElementRelation validator will pass through the messages that are provided
 by the internal relation validator.
@@ -950,11 +1050,17 @@ Currently the following additional placeholders are supported:
 * %compareLabel% - The label of the compared element
 * %compareValue% - The value that was compared
 
+
 ## Mol_Validate_Boolean ##
+
+
 A validator that checks if a value may be interpreted as boolean.
 
 
+
 ## Mol_Validate_False ##
+
+
 A validator that always returns false.
 May be used as a null or special case object.
 
@@ -966,13 +1072,18 @@ The error message is customizable:
     // Returns an array with the message "Invalid".
     $validator->getMessages();
 
+
 ## Mol_Validate_True ##
+
+
 A validator that returns always true.
 May be used as null or special case object.
 
+
 ## Mol_Validate_Suffix ##
-Validator that checks if a value ends with an accepted suffix.
-# Usage #
+
+
+### Usage ###
 
 Multiple allowed suffixes can be passed to the constructor:
 
@@ -1004,7 +1115,10 @@ suffixes is empty:
     // Returns true:
     $validator->isValid('test.pdf');
 
+
 ## Mol_Validate_String ##
+
+
 A validator that checks if a given value is a string.
 Example:
 
@@ -1014,10 +1128,13 @@ Example:
     // Returns true.
     $validator->isValid('42');
 
+
 # Mol_DataType #
 
 
 ## Mol_DataType_Map ##
+
+
 A hash map implementation that returns a configured standard value
 if no value is defined for a requested key.
 Configure a default value:
@@ -1035,13 +1152,11 @@ Register a value for multiple keys:
     // Registers 42 for the keys a, b and c.
     $map->register(42, array('a', 'b', 'c'));
 
-## Mol_DataType_String ##
-Class that simplifies charset-dependent string handling.
-Hint:
-Have a closer look at Mol_Util_String if you are searching for
-string methods that do not require knowledge about the charset.
 
-# Description #
+## Mol_DataType_String ##
+
+
+### Description ###
 
 Each string is represented by an object that encapsulates the
 raw string value and the charset.
@@ -1052,7 +1167,7 @@ is performed then a new string object will be created and returned.
 If necessary methods take the charset into account. Therefore it
 is possible to compare string with different charsets and so on.
 
-# Usage #
+### Usage ###
 
 String objects are instantiated via create():
 
@@ -1075,14 +1190,16 @@ are handled correctly:
     // Returns: array('ä', 'ü', 'ö')
     $characters   = $stringObject->toCharacters();
 
+
 # Mol_Util #
 
 
 ## Mol_Util_ObjectBuilder ##
-Creates instances of other classes.
-# Usage #
 
-## Creating a builder ##
+
+### Usage ###
+
+#### Creating a builder ####
 
 The most simple builder can be created without any constructor argument:
 
@@ -1107,7 +1224,7 @@ It is even possible to provide multiple type constraints:
 In this case the builder will only instantiate classes that fulfill
 *all* of the given type constraints.
 
-## Building objects ##
+#### Building objects ####
 
 The create() method is used to instantiate objects of a given class:
 
@@ -1124,7 +1241,10 @@ if the type constraints are not fulfilled:
     // This creation will fail:
     $array = $builder->create('SplFixedArray', array(100));
 
+
 ## Mol_Util_StringStream ##
+
+
 Helper class that simplifies reading from strings via stream functions.
 The helper may be used to pass string to function that usually support
 files only.
@@ -1135,16 +1255,18 @@ Example:
     // $content contains "Hello World!"
     $content = file_get_contents(new Mol_Util_StringStream($data));
 
+
 ## Mol_Util_Math ##
+
+
 Provides mathematical helper methods.
 
 
-## Mol_Util_TypeInspector ##
-Helper class that is able to perform type checks.
-This class operates on class and interface names, objects
-do not have to be created to perform checks.
 
-# Usage #
+## Mol_Util_TypeInspector ##
+
+
+### Usage ###
 
 A new type inspector is simply created without any argument:
 
@@ -1156,7 +1278,7 @@ This is intended, as for example a cache for already checked types
 might be added in the future. Such a feature should not lead to
 global attributes later.
 
-## Checking types ##
+#### Checking types ####
 
 The TypeInspector provides several methods to check types by name.
 
@@ -1186,7 +1308,7 @@ The following checks are equivalent:
     $inspector->is('ArrayObject', array('Countable'));
     $inspector->is('ArrayObject', 'Countable');
 
-## Asserting type rules ##
+#### Asserting type rules ####
 
 Besides methods for type checks, there are also methods that can
 be used to assert certain type conditions.
@@ -1215,11 +1337,17 @@ Like is(), assertFulfills() can be used to check complex type rules:
     // provided type constraints.
     $this->assertFulfills('ArrayObject', array('Countable', 'Traversable'));
 
+
 ## Mol_Util_MemoryStreamWrapper ##
+
+
 Low level class that allows to access MemoryStream objects via stream functions.
 
 
+
 ## Mol_Util_MemoryStream ##
+
+
 Stream helper class that allows writing into memory.
 May be used with functions that usually write to files only.
 
@@ -1242,12 +1370,18 @@ the constructor:
 
     $stream = new Mol_Util_MemoryStream('Hello World!');
 
+
 ## Mol_Util_Stringifier ##
+
+
 Class that converts data into simple strings.
 This class does *not* serialize data, the generated strings
 are just meant for output.
 
+
 ## Mol_Util_String ##
+
+
 Contains helper methods for string handling.
 This class contains lightweight helper methods that simplify string handling.
 All operations are independent of the underlying charset of the subject string.
