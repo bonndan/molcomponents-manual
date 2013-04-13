@@ -22,12 +22,16 @@
                 <value>molcomponents.md</value>
             </option>
             <option>
-                <name>pandoc-template</name>
-                <value>assets/head.sty</value>
+                <name>pandoc-options</name>
+                <value>--indented-code-classes=php,numberLines --highlight-style=tango -f markdown+lhs --listings --template=assets/head.sty</value>
             </option>
             <option>
                 <name>writer</name>
                 <value>MdMan_Writer_ByPackageAndClass</value>
+            </option>
+            <option>
+                <name>writer</name>
+                <value>MdMan_Writer_Pandoc</value>
             </option>
         </plugin>
     </plugins>
