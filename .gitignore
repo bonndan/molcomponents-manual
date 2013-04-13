@@ -1,3 +1,5 @@
 nbproject
 vendor
 doc
+data
+composer.lock
