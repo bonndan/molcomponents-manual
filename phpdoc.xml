@@ -25,6 +25,10 @@
                 <name>pandoc-template</name>
                 <value>assets/head.sty</value>
             </option>
+            <option>
+                <name>writer</name>
+                <value>MdMan_Writer_ByPackageAndClass</value>
+            </option>
         </plugin>
     </plugins>
 </phpdocumentor>
